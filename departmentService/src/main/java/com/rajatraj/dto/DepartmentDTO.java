@@ -1,17 +1,11 @@
 package com.rajatraj.dto;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 public class DepartmentDTO {
+	private Long departmentId;
 	private String departmentName;
 	private String departmentDescription;
 	private String departmentCode;
-	private Long departmentId;
 	public Long getDepartmentId() {
 		return departmentId;
 	}

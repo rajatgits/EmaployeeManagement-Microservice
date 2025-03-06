@@ -24,22 +24,21 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<DepartmentDTO> getAllDepartments() {
         List<Department> departments = departmentRepository.findAll();
         return departments.stream()
-                .map(department -> modelMapper.map(department, DepartmentDTO.class))
-                .collect(Collectors.toList());
+                .map(this::convertToDTO).collect(Collectors.toList());
     }
 
     @Override
     public DepartmentDTO getDepartmentById(Long id) {
         Department department = departmentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Department not found"));
-        return modelMapper.map(department, DepartmentDTO.class);
+        return convertToDTO(department);
     }
 
     @Override
     public DepartmentDTO createDepartment(DepartmentDTO departmentDTO) {
-        Department department = modelMapper.map(departmentDTO, Department.class);
+        Department department = convertToEntity(departmentDTO);
         Department savedDepartment = departmentRepository.save(department);
-        return modelMapper.map(savedDepartment, DepartmentDTO.class);
+        return convertToDTO(savedDepartment);
     }
 
     @Override
@@ -59,11 +58,21 @@ public class DepartmentServiceImpl implements DepartmentService {
         }
         
         Department updatedDepartment = departmentRepository.save(existingDepartment);
-        return modelMapper.map(updatedDepartment, DepartmentDTO.class);
+        return convertToDTO(updatedDepartment);
     }
 
     @Override
     public void deleteDepartment(Long id) {
         departmentRepository.deleteById(id);
+    }
+    
+    // Convert Entity to DTO
+    private DepartmentDTO convertToDTO(Department department) {
+        return modelMapper.map(department, DepartmentDTO.class);
+    }
+    
+    // Convert DTO to Entity
+    private Department convertToEntity(DepartmentDTO departmentDTO) {
+        return modelMapper.map(departmentDTO, Department.class);
     }
 }

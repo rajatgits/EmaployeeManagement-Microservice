@@ -17,9 +17,25 @@ public class Employee {
     private String lastName; 
     private String email;
     private Long departmentId;
-    
+    private Long organizationId;
     @Transient
     private Department department;
+    
+    @Transient
+    private Organization organization;
+    public Long getOrganizationId() {
+		return organizationId;
+	}
+	public void setOrganizationId(Long organizationId) {
+		this.organizationId = organizationId;
+	}
+	public Organization getOrganization() {
+		return organization;
+	}
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
+	}
+	
 	public Department getDepartment() {
 		return department;
 	}
@@ -59,12 +75,14 @@ public class Employee {
 	public Employee() {
 		
 	}
-	public Employee(Long id, String firstName, String lastName, String email, Long departmentId, Department department) {
+	public Employee(Long id, String firstName, String lastName, String email, Long departmentId, Department department, Long organizationId, Organization organization) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.departmentId = departmentId;
 		this.department = department;
+		this.organizationId = organizationId;
+		this.organization = organization;
 	}
 }

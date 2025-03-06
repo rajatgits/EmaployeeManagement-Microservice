@@ -7,13 +7,28 @@ public class EmployeeDTO {
     private String lastName;
     private String email;
     private Long departmentId;
+    private DepartmentDTO department;
+    private Long organizationId;
+    private OrganizationDTO organization;
+    public Long getOrganizationId() {
+		return organizationId;
+	}
+	public void setOrganizationId(Long organizationId) {
+		this.organizationId = organizationId;
+	}
+	public OrganizationDTO getOrganization() {
+		return organization;
+	}
+	public void setOrganization(OrganizationDTO organization) {
+		this.organization = organization;
+	}
+	
     public Long getDepartmentId() {
 		return departmentId;
 	}
 	public void setDepartmentId(Long departmentId) {
 		this.departmentId = departmentId;
 	}
-	private DepartmentDTO department;
 	public DepartmentDTO getDepartment() {
 		return department;
 	}
@@ -47,12 +62,14 @@ public class EmployeeDTO {
 	public EmployeeDTO() {
 		
 	}
-	public EmployeeDTO(Long id, String firstName, String lastName, String email, Long departmentId, DepartmentDTO department) {
+	public EmployeeDTO(Long id, String firstName, String lastName, String email, Long departmentId, DepartmentDTO department, Long organizationId, OrganizationDTO organization) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.departmentId = departmentId;
 		this.department = department;
+		this.organizationId = organizationId;
+		this.organization = organization;
 	}
 }
